@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JustWork MVP</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #0f172a;
+      color: white;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    h1 { font-size: 42px; }
+    p { color: #cbd5f5; }
+
+    .btn {
+      background: #3b82f6;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+      border-radius: 6px;
+      border: none;
+      margin-top: 15px;
+    }
+
+    .hidden { display: none; }
+
+    .dashboard {
+      text-align: left;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container" id="landing">
+  <h1>JustWork 🚀</h1>
+  <p>The easiest way for freelancers to manage clients, admin & taxes.</p>
+
+  <input type="email" id="email" placeholder="Enter your email">
+  <br>
+  <div class="btn" onclick="joinWaitlist()">Join Waitlist</div>
+
+  <p id="success" class="hidden">✅ You're on the list!</p>
+</div>
+
+<div class="container hidden" id="dashboard">
+  <h1>Your Dashboard</h1>
+
+  <div class="dashboard">
+    <div class="card">
+      <h3>Clients</h3>
+      <p>3 active clients</p>
+    </div>
+
+    <div class="card">
+      <h3>Revenue</h3>
+      <p>$2,450 this month</p>
+    </div>
+
+    <div class="card">
+      <h3>Tasks</h3>
+      <p>- Send invoice<br>- Call new lead</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function joinWaitlist() {
+  const email = document.getElementById("email").value;
+
+  if (!email.includes("@")) {
+    alert("Enter valid email");
+    return;
+  }
+
+  // save locally (fake backend)
+  localStorage.setItem("justwork_user", email);
+
+  document.getElementById("success").classList.remove("hidden");
+
+  setTimeout(() => {
+    document.getElementById("landing").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
+  }, 1000);
+}
+
+// auto login
+window.onload = () => {
+  const user = localStorage.getItem("justwork_user");
+  if (user) {
+    document.getElementById("landing").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
+  }
+};
+</script>
+
+</body>
+</html>
