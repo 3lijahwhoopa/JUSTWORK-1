@@ -1230,5 +1230,51 @@
             }
         });
     </script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAZSYQl6kYL_86Sb7mh7qNDxxjDLBiIR54",
+    authDomain: "just-work-baf72.firebaseapp.com",
+    projectId: "just-work-baf72",
+    storageBucket: "just-work-baf72.firebasestorage.app",
+    messagingSenderId: "293116386870",
+    appId: "1:293116386870:web:390dc0df0b5d19fc66c297",
+    measurementId: "G-PTWVPRDGXH"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  function signup() {
+    const email = document.getElementById("email").value;
+    const password = "123456";
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        alert("Account created!");
+        showDashboard();
+      })
+      .catch(err => alert(err.message));
+  }
+
+  function login() {
+    const email = document.getElementById("email").value;
+    const password = "123456";
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        showDashboard();
+      })
+      .catch(err => alert(err.message));
+  }
+
+  function showDashboard() {
+    document.getElementById("landing").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+  }
+
+  auth.onAuthStateChanged(user => {
+    if (user) showDashboard();
+  });
+</script>
 </body>
 </html>
