@@ -85,4 +85,178 @@
         }
     </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JustWork</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to JustWork</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Clients</a></li>
+                    <li><a href="#">Tasks</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="login">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <input type="email" placeholder="Email" required />
+                    <input type="password" placeholder="Password" required />
+                    <button type="submit">Login</button>
+                </form>
+                <div id="toast" class="toast">
+                    <p></p>
+                </div>
+            </section>
+            <section id="dashboard" class="hidden">
+                <h2>Dashboard</h2>
+                <div class="client-management">
+                    <h3>Clients</h3>
+                    <ul id="client-list"></ul>
+                    <button id="add-client">Add Client</button>
+                </div>
+                <div class="task-management">
+                    <h3>Tasks</h3>
+                    <ul id="task-list"></ul>
+                    <button id="add-task">Add Task</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target[0].value;
+            const password = e.target[1].value;
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('dashboard').classList.remove('hidden');
+                    showToast('Login successful!');
+                })
+                .catch((error) => {
+                    showToast(error.message);
+                });
+        });
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('p').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JustWork</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to JustWork</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Clients</a></li>
+                    <li><a href="#">Tasks</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="login">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <input type="email" placeholder="Email" required />
+                    <input type="password" placeholder="Password" required />
+                    <button type="submit">Login</button>
+                </form>
+                <div id="toast" class="toast">
+                    <p></p>
+                </div>
+            </section>
+            <section id="dashboard" class="hidden">
+                <h2>Dashboard</h2>
+                <div class="client-management">
+                    <h3>Clients</h3>
+                    <ul id="client-list"></ul>
+                    <button id="add-client">Add Client</button>
+                </div>
+                <div class="task-management">
+                    <h3>Tasks</h3>
+                    <ul id="task-list"></ul>
+                    <button id="add-task">Add Task</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target[0].value;
+            const password = e.target[1].value;
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    document.getElementById('login').classList.add('hidden');
+                    document.getElementById('dashboard').classList.remove('hidden');
+                    showToast('Login successful!');
+                })
+                .catch((error) => {
+                    showToast(error.message);
+                });
+        });
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('p').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+    </script>
+</body>
 </html>
