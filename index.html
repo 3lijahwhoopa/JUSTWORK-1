@@ -1003,7 +1003,10 @@
         document.getElementById('modal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('modal')) {
                 closeModal();
-            }
+                function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+}            }
         });
     </script>
 </body>
